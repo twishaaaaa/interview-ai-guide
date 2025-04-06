@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getQuestionsForRole, evaluateAnswer, generateFeedback } from '@/data/mockData';
-import { JobRole, ExperienceLevel, Interview, useInterview } from '@/context/InterviewContext';
+import { JobRole, ExperienceLevel, Interview, useInterview, Evaluation } from '@/context/InterviewContext';
 import { LineChart, BarChart2, Calendar, Clock, Award, TrendingUp, PieChart } from 'lucide-react';
 import {
   LineChart as ReLineChart,
@@ -70,7 +70,7 @@ const Dashboard: React.FC = () => {
           questionId: q.id,
           relevance: adjustedScore,
           keywords: q.idealKeywords?.slice(0, Math.floor(Math.random() * 3) + 1) || [],
-          sentiment: adjustedScore > 70 ? 'positive' : adjustedScore > 50 ? 'neutral' : 'negative',
+          sentiment: adjustedScore > 70 ? 'positive' as const : adjustedScore > 50 ? 'neutral' as const : 'negative' as const,
           score: adjustedScore
         };
       });
@@ -245,7 +245,7 @@ const Dashboard: React.FC = () => {
               <CardContent>
                 <div className="h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={scoreProgressData}>
+                    <ReLineChart data={scoreProgressData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="name" />
                       <YAxis domain={[0, 100]} />
@@ -258,7 +258,7 @@ const Dashboard: React.FC = () => {
                         activeDot={{ r: 8 }} 
                         name="Interview Score"
                       />
-                    </LineChart>
+                    </ReLineChart>
                   </ResponsiveContainer>
                 </div>
               </CardContent>
@@ -324,7 +324,7 @@ const Dashboard: React.FC = () => {
             <CardContent>
               <div className="h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={scoreProgressData}>
+                  <ReLineChart data={scoreProgressData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis domain={[0, 100]} />
@@ -337,7 +337,7 @@ const Dashboard: React.FC = () => {
                       activeDot={{ r: 8 }} 
                       name="Interview Score"
                     />
-                  </LineChart>
+                  </ReLineChart>
                 </ResponsiveContainer>
               </div>
               <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">

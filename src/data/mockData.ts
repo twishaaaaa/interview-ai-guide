@@ -1,4 +1,3 @@
-
 import { Interview, JobRole, ExperienceLevel, Question } from "../context/InterviewContext";
 
 // Generate a random UUID-like string for IDs
@@ -261,7 +260,7 @@ export const evaluateAnswer = (answer: string, idealKeywords: string[] = []): {
 
 // Generate feedback based on evaluations
 export const generateFeedback = (evaluations: { score: number }[]): string => {
-  const averageScore = evaluations.reduce((acc, eval) => acc + eval.score, 0) / evaluations.length;
+  const averageScore = evaluations.reduce((acc, evaluation) => acc + evaluation.score, 0) / evaluations.length;
   
   let feedback = "";
   

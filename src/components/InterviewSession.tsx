@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -114,7 +113,7 @@ const InterviewSession: React.FC = () => {
       if (currentQuestionIndex === totalQuestions - 1) {
         // Calculate overall score (average of all evaluations)
         const overallScore = Math.round(
-          currentInterview.evaluations.reduce((acc, eval) => acc + eval.score, 0) / totalQuestions
+          currentInterview.evaluations.reduce((acc, evaluation) => acc + evaluation.score, 0) / totalQuestions
         );
         
         // Generate feedback based on evaluations
